@@ -3,10 +3,11 @@
         portfolio!
         <ModalContainer
         v-if="displayModal"
-        :closeModal="closeModal"></ModalContainer>
-        <button v-on:click="showModal('Commercial')">Commercial</button>
-        <button v-on:click="showModal('Residential')">Residential</button>
-        <button v-on:click="showModal('Institutional')">Institutional</button>
+        :closeModal="closeModal"
+        :activeType="activeType"></ModalContainer>
+        <button v-on:click="showModal('commercial')">Commercial</button>
+        <button v-on:click="showModal('residential')">Residential</button>
+        <button v-on:click="showModal('institutional')">Institutional</button>
     </div>
 </template>
 
@@ -19,12 +20,13 @@ export default {
   },
   data() {
       return {
-          displayModal: false
+          displayModal: false,
+          activeType: 'commercial'
       }
   }, 
   methods: {
       showModal(arg) {
-          console.log('arg', arg)
+          this.activeType = arg;
           this.displayModal = true
       },
       closeModal() {

@@ -1,7 +1,12 @@
 <template>
     <div class="modal-container-main" v-on:click="checkIfActive">
         <div class="modal-header-container">
-            <span>Commercial </span>| <span>Residential </span>| <span>Institutional</span>
+            <span v-bind:class="[activeTypeState === commercial ? active : '']"
+            v-on:click="setActive('commercial')">Commercial </span>| 
+            <span v-bind:class="[activeTypeState === residential ? active : '']"
+            v-on:click="setActive('residential')">Residential </span>| 
+            <span v-bind:class="[activeTypeState === institutional ? active : '']"
+            v-on:click="setActive('institutional')">Institutional</span>
         </div>
         <div class="modal-body-container">
             <!-- TODO: Bring in stuff from database -->
@@ -24,10 +29,22 @@ export default {
     name: 'modalContainer',
     methods: {
       checkIfActive() {
-          console.log('Getting hit')
+        //   console.log(this)
+      },
+      setActive(type) {
+        this.activeTypeState = type
       }
     },
-    props: ['closeModal']
+    data(props) {
+        return {
+            commercial: 'commercial',
+            residential: 'residential',
+            institutional: 'institutional',
+            activeTypeState: props.activeType,
+            active: 'active'
+        }
+    },
+    props: ['closeModal', 'activeType']
 }
 </script>
 
@@ -57,5 +74,8 @@ export default {
     width: 30%;
     height: 200px;
     margin-bottom: 20px;
+}
+.active {
+    color: blue;
 }
 </style>
