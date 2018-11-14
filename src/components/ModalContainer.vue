@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'modalContainer',
     methods: {
@@ -41,10 +42,19 @@ export default {
             residential: 'residential',
             institutional: 'institutional',
             activeTypeState: props.activeType,
-            active: 'active'
+            active: 'active',
+            projects: [],
+            filteredProjects: []
         }
     },
-    props: ['closeModal', 'activeType']
+    props: ['closeModal', 'activeType'],
+    mounted() {
+        axios.get('/api/projects').then(res => {
+            let {data} = res; 
+            this.projects = data;
+            this.filteredProjects = data.filter( project => project.type === this.activeTypeState)
+        })
+    }
 }
 </script>
 
