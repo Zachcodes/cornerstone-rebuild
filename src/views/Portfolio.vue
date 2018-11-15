@@ -1,13 +1,14 @@
 <template>
-    <div>
+    <div class='portfolio-main-container'
+    v-on:click="checkModalStatus">
         portfolio!
         <ModalContainer
         v-if="displayModal"
         :closeModal="closeModal"
         :activeType="activeType"></ModalContainer>
-        <button v-on:click="showModal('commercial')">Commercial</button>
-        <button v-on:click="showModal('residential')">Residential</button>
-        <button v-on:click="showModal('institutional')">Institutional</button>
+        <button v-on:click="showModal('commercial', $event)">Commercial</button>
+        <button v-on:click="showModal('residential', $event)">Residential</button>
+        <button v-on:click="showModal('institutional', $event)">Institutional</button>
     </div>
 </template>
 
@@ -25,13 +26,23 @@ export default {
       }
   }, 
   methods: {
-      showModal(arg) {
+      showModal(arg, e) {
           this.activeType = arg;
           this.displayModal = true
+          e.stopPropagation();
       },
       closeModal() {
           this.displayModal = false
+      },
+      checkModalStatus() {
+          this.displayModal ? this.displayModal = false : null
       }
   }
 }
 </script>
+
+<style>
+.portfolio-main-container {
+    min-height: calc(100vh - 100px);
+}
+</style>

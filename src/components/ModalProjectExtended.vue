@@ -1,24 +1,22 @@
 <template>
     <div class="project-extended-container">
-        Modal Project Extended!
+        Modal Project Extended {{project.project_name}}
     </div>
 </template>
 
 <script>
 export default {
     name: 'modalProjectExtended',
-    props: ['project']
+    props: ['project'],
+    mounted() {
+        console.log(this._props.project)
+    }
 }
 </script>
 
 <style>
 .project-extended-container {
     position: absolute;
-    /* height: 80%;
-    width: 80%; */
-    /* background-color: blue;
-    top: 0;
-    margin: auto; */
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);

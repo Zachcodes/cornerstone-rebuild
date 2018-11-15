@@ -1,12 +1,12 @@
 <template>
-    <div class="modal-container-main" v-on:click="checkIfActive">
+    <div class="modal-container-main" v-on:click="registerClick">
         <div class="modal-header-container">
             <span v-bind:class="[activeTypeState === commercial ? active : '']"
-            v-on:click="setActiveType('commercial')">Commercial </span>| 
+            v-on:click="setActiveType('commercial', $event)">Commercial </span>| 
             <span v-bind:class="[activeTypeState === residential ? active : '']"
-            v-on:click="setActiveType('residential')">Residential </span>| 
+            v-on:click="setActiveType('residential', $event)">Residential </span>| 
             <span v-bind:class="[activeTypeState === institutional ? active : '']"
-            v-on:click="setActiveType('institutional')">Institutional</span>
+            v-on:click="setActiveType('institutional', $event)">Institutional</span>
         </div>
         <div class="modal-body-container">
             <ModalIcon v-for="project in filteredProjects"
@@ -29,16 +29,19 @@ import ModalProjectExtended from './ModalProjectExtended'
 export default {
     name: 'modalContainer',
     methods: {
-      checkIfActive() {
-        //   console.log(this)
-      },
-      setActiveType(type) {
+      setActiveType(type, e) {
         this.filteredProjects = this.projects.filter( project => project.type === type)
         this.activeTypeState = type
+        e.stopPropagation();
       },
-      openExtendedProject(id) {
+      openExtendedProject(id, e) {
         this.extendedProject = this.projects.find( project => project.id === id)
-        this.extendedActive = !this.extendedActive
+        this.extendedActive = true
+        e.stopPropagation();
+      },
+      registerClick(e) {
+        this.extendedActive ? this.extendedActive = false : null;
+        e.stopPropagation()
       }
     },
     data(props) {

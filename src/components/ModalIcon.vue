@@ -1,7 +1,7 @@
 <template>
     <div class="modal-icon-container" 
-    v-on:click="openExtendedProject(project.id)">
-        modal icon
+    v-on:click="openExtendedProject(project.id, $event)">
+        modal icon 
     </div>
 </template>
 
