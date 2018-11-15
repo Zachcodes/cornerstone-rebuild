@@ -1,6 +1,5 @@
 <template>
   <div class="philosophy-main-container">
-    <h1>This is the philosophy page</h1>
     <div class="philosophy-main-text-container">
         <div class="philosophy-text-square"></div>
         <div class="philosophy-text-line"></div>
@@ -43,13 +42,17 @@ export default {
   box-sizing: border-box;
   width: 300px;
   padding: 5px;
-  position: absolute;
   color: #00000061;
   justify-content: flex-start;
 }
 .philosophy-main-text-container:hover {
   background-color: #8080801a;
   color: black;
+  cursor: default;
+}
+.philosophy-main-text-container:hover > .philosophy-text-square {
+  background-color: red;
+  cursor: default;
 }
 .philosophy-text-square {
   width: 5%;

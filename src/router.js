@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Portfolio from './views/Portfolio.vue'
 import Philosophy from './views/Philosophy.vue'
+import Contact from './views/Contact.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/philosophy',
       name: 'philosophy',
       component: Philosophy
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: Contact
     }
   ]
 })
