@@ -10,14 +10,17 @@
             :minute-interval="5"
             v-model="timeValue"
             v-if="requestCallback"></VueTimepicker>
+            <div>Phone: <input v-model="phone"/></div>
             <button v-on:submit.prevent="submitForm"
-            v-bind:disabled="emailTouched && emailValid">Submit Form</button>
+            v-bind:disabled="!emailTouched && !emailValid">Submit Form</button>
         </form>
     </div>
 </template>
 
 <script>
-import VueTimepicker from 'vue2-timepicker'
+import VueTimepicker from 'vue2-timepicker';
+import axios from 'axios';
+
 export default {
     name: 'contact',
     data() {
@@ -42,7 +45,19 @@ export default {
     },
     methods: {
         submitForm() {
-            console.log(this.timeValue)
+            let { name, email, subject, message, requestCallback, phone, timeValue } = this;
+            let emailInformation = {
+                name,
+                email,
+                subject,
+                message,
+                requestCallback,
+                phone,
+                timeValue
+            }
+            axios.post('/api/contact', emailInformation).then( res => {
+                console.log(res)
+            })
         },
         emailChange() {
             if(this.email) {
