@@ -2,38 +2,42 @@
     <div class="modal-container-main" v-on:click="checkIfActive">
         <div class="modal-header-container">
             <span v-bind:class="[activeTypeState === commercial ? active : '']"
-            v-on:click="setActive('commercial')">Commercial </span>| 
+            v-on:click="setActiveType('commercial')">Commercial </span>| 
             <span v-bind:class="[activeTypeState === residential ? active : '']"
-            v-on:click="setActive('residential')">Residential </span>| 
+            v-on:click="setActiveType('residential')">Residential </span>| 
             <span v-bind:class="[activeTypeState === institutional ? active : '']"
-            v-on:click="setActive('institutional')">Institutional</span>
+            v-on:click="setActiveType('institutional')">Institutional</span>
         </div>
         <div class="modal-body-container">
-            <!-- TODO: Bring in stuff from database -->
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
-            <div class="modal-icon-container"></div>
+            <ModalIcon v-for="project in filteredProjects"
+            :key="project.id"
+            :project="project"
+            :flipStatus="flipStatusExtended"
+            ></ModalIcon>
         </div>
         <button v-on:click="closeModal">Close Modal</button>
+        <ModalProjectExtended v-if="extendedActive"></ModalProjectExtended>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import ModalIcon from './ModalIcon'
+import ModalProjectExtended from './ModalProjectExtended'
+
 export default {
     name: 'modalContainer',
     methods: {
       checkIfActive() {
         //   console.log(this)
       },
-      setActive(type) {
+      setActiveType(type) {
         this.activeTypeState = type
+      },
+      flipStatusExtended(id) {
+        console.log('id in flip status', id)
+        this.extendedProject = this.projects.find( project => project.id === id)
+        this.extendedActive = !this.extendedActive
       }
     },
     data(props) {
@@ -44,10 +48,16 @@ export default {
             activeTypeState: props.activeType,
             active: 'active',
             projects: [],
-            filteredProjects: []
+            filteredProjects: [],
+            extendedActive: false,
+            extendedProject: {}
         }
     },
     props: ['closeModal', 'activeType'],
+    components: {
+        ModalIcon,
+        ModalProjectExtended
+    },
     mounted() {
         axios.get('/api/projects').then(res => {
             let {data} = res; 
