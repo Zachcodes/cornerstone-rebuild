@@ -12,11 +12,12 @@
             <ModalIcon v-for="project in filteredProjects"
             :key="project.id"
             :project="project"
-            :flipStatus="flipStatusExtended"
+            :openExtendedProject="openExtendedProject"
             ></ModalIcon>
         </div>
         <button v-on:click="closeModal">Close Modal</button>
-        <ModalProjectExtended v-if="extendedActive"></ModalProjectExtended>
+        <ModalProjectExtended v-if="extendedActive"
+        :project="extendedProject"></ModalProjectExtended>
     </div>
 </template>
 
@@ -32,10 +33,10 @@ export default {
         //   console.log(this)
       },
       setActiveType(type) {
+        this.filteredProjects = this.projects.filter( project => project.type === type)
         this.activeTypeState = type
       },
-      flipStatusExtended(id) {
-        console.log('id in flip status', id)
+      openExtendedProject(id) {
         this.extendedProject = this.projects.find( project => project.id === id)
         this.extendedActive = !this.extendedActive
       }
