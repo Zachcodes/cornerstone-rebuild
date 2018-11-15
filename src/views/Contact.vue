@@ -6,12 +6,17 @@
             <div>Subject: <input v-model="subject"/></div>
             <div>Message: <input v-model="message"/></div>
             <div>Request callback: <input type="checkbox" v-model="requestCallback"/></div>
+            <VueTimepicker format="hh:mm A"
+            :minute-interval="5"
+            v-model="timeValue"
+            v-if="requestCallback"></VueTimepicker>
             <button v-on:submit.prevent="submitForm">Submit Form</button>
         </form>
     </div>
 </template>
 
 <script>
+import VueTimepicker from 'vue2-timepicker'
 export default {
     name: 'contact',
     data() {
@@ -22,12 +27,19 @@ export default {
             message: '',
             requestCallback: false,
             phone: '',
-            timeToCall: '12:00 pm'
+            timeValue: {
+                hh: "12",
+                mm: "00",
+                A: "PM"
+            }
         }
+    },
+    components: {
+        VueTimepicker
     },
     methods: {
         submitForm() {
-            console.log(this)
+            console.log(this.timeValue)
         }
     }
 }
