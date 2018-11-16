@@ -5,7 +5,7 @@
             <div><span>Phone: my phone</span></div>
             <div><span>Email: my email</span></div>
         </div>
-        <form v-on:submit.prevent="submitForm">
+        <form v-on:submit.prevent="submitForm" class="contact-form">
             <div>Name: <input v-model="name"/></div>
             <div>Email: <input v-model="email" v-on:change="emailChange" v-bind:class="{invalid: emailTouched && !emailValid}"/></div>
             <div>Subject: <input v-model="subject"/></div>
@@ -90,5 +90,21 @@ export default {
 <style>
 .invalid {
     border: 1px solid red;
+}
+.contact-information-container {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    box-shadow: 5px 10px 18px #888888;
+    width: 200px;
+    top: 10px;
+}
+.contact-form {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    box-shadow: 5px 10px 18px #888888;
+    width: 200px;
+    top: 10px;
 }
 </style>

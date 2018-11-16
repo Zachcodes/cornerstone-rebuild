@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="nav">
-      <img alt="CDG Logo" src="./assets/CDGLogo.svg" class="cdg-logo">
+      <router-link to="/"><img alt="CDG Logo" src="./assets/CDGLogo.svg" class="cdg-logo"></router-link>
     </div>
     <router-view/>
   </div>
@@ -17,10 +17,8 @@ html,body
     overflow-x: hidden; 
     box-sizing: border-box;
 }
-.nav {
-  height: 100px;
-}
 .cdg-logo {
   width: 350px;
+  height: 150px;
 }
 </style>
