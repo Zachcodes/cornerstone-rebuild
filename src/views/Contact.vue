@@ -1,5 +1,10 @@
 <template>
     <div class="contact-main-container">
+        <div class="contact-information-container"> 
+            <div><span>Address: my address</span></div> 
+            <div><span>Phone: my phone</span></div>
+            <div><span>Email: my email</span></div>
+        </div>
         <form v-on:submit.prevent="submitForm">
             <div>Name: <input v-model="name"/></div>
             <div>Email: <input v-model="email" v-on:change="emailChange" v-bind:class="{invalid: emailTouched && !emailValid}"/></div>
@@ -56,8 +61,8 @@ export default {
                 timeValue
             }
             axios.post('/api/contact', emailInformation).then( res => {
-                console.log(res)
-            })
+                alert('Success')
+            }).catch(err => alert("Couldn't send your email"))
         },
         emailChange() {
             if(this.email) {
