@@ -43,6 +43,10 @@ export default {
 
 <style>
 .portfolio-main-container {
-    min-height: calc(100vh - 100px);
+  background-image: url("../assets/cdglines.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: calc(100vh - 150px);
 }
 </style>

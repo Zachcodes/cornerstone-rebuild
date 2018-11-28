@@ -88,6 +88,13 @@ export default {
 </script>
 
 <style>
+.contact-main-container {
+  background-image: url("../assets/cdglines.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: calc(100vh - 150px);
+}
 .invalid {
     border: 1px solid red;
 }

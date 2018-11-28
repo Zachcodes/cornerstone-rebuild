@@ -37,6 +37,13 @@ export default {
 </script>
 
 <style>
+.philosophy-main-container {
+  background-image: url("../assets/cdglines.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: calc(100vh - 150px);
+}
 .philosophy-main-text-container {
   display: flex;
   box-sizing: border-box;
