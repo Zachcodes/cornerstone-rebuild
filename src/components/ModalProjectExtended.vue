@@ -1,12 +1,14 @@
 <template>
-    <div class="project-extended-container">
+    <div class="project-extended-container" v-on:click="registerClick">
         <div class="focused-image-container">
             <img class="focused-image" :src="mainDisplayedImage"/>
         </div>
         <div class="thumbnail-container">
-            <img class="thumbnail-image" v-for="(link, i) in project.image_links"
+            <div v-for="(link, i) in project.image_links" v-bind:class="[startingPictureIndex === i ? active : '', thumbnailImageContainer]"
             :key="project.id + Math.random()"
-            :src="link"/>
+            :src="link">
+                <img class="thumbnail-image" :src="link"/>
+            </div>
         </div>
     </div>
 </template>
@@ -18,7 +20,15 @@ export default {
     data() {
         return {
             intervalId: 0,
-            startingPictureIndex: 0
+            startingPictureIndex: 0,
+            thumbnailImage: 'thumbnail-image',
+            active: 'active-image',
+            thumbnailImageContainer: 'thumbnail-image-container'
+        }
+    },
+    methods: {
+        registerClick(e) {
+            e.stopPropagation();
         }
     },
     computed: {
@@ -31,7 +41,7 @@ export default {
         if(this.project.image_links.length && !this.intervalId) {
             this.intervalId = setInterval(() => {
                 this.startingPictureIndex === this.project.image_links.length - 1 ? this.startingPictureIndex = 0 : this.startingPictureIndex += 1;
-            }, 4000)
+            }, 3000)
         }
     }
 }
@@ -39,13 +49,13 @@ export default {
 
 <style>
 .project-extended-container {
-    position: absolute;
+    position: fixed;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     background-color: white;
-    top: 20px;
-    bottom: 20px;
+    top: 10%;
+    bottom: 10%;
     width: 70%;
     padding: 20px;
     display: flex;
@@ -64,10 +74,17 @@ export default {
     padding: 0 10px;
     flex-direction: column;
 }
-.thumbnail-image {
-    background-color: black;
+.thumbnail-image-container {
     width: 100%;
     height: 100px;
     margin-bottom: 10px;
+}
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+}
+.active-image {
+    height: 120px;
+    transition: height 2s;
 }
 </style>
