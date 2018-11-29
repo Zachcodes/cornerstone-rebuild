@@ -17,9 +17,12 @@ export default {
 .modal-icon-container {
     width: 100%;
     height: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
+}
+.modal-icon-container:hover {
+    cursor: pointer;
 }
 .modal-icon-picture {
     background-color: black;

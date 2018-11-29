@@ -18,6 +18,7 @@ massive(CONNECTION_STRING).then(dbInstance => {
 app.get('/api/projects', pc.getProjects)
 app.post('/api/contact', cc.sendEmail)
 
+
 app.listen(SERVER_PORT, () => {
   console.log(`Listening on port ${SERVER_PORT}`)
 })

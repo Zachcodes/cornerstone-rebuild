@@ -1,11 +1,11 @@
 <template>
     <div class="modal-container-main" v-on:click="registerClick">
         <div class="modal-header-container">
-            <span v-bind:class="[activeTypeState === commercial ? active : '']"
+            <span v-bind:class="[activeTypeState === commercial ? active : '', modalNav]"
             v-on:click="setActiveType('commercial', $event)">Commercial </span>| 
-            <span v-bind:class="[activeTypeState === residential ? active : '']"
+            <span v-bind:class="[activeTypeState === residential ? active : '', modalNav]"
             v-on:click="setActiveType('residential', $event)">Residential </span>| 
-            <span v-bind:class="[activeTypeState === institutional ? active : '']"
+            <span v-bind:class="[activeTypeState === institutional ? active : '', modalNav]"
             v-on:click="setActiveType('institutional', $event)">Institutional</span>
         </div>
         <div class="modal-body-container">
@@ -51,6 +51,7 @@ export default {
             institutional: 'institutional',
             activeTypeState: props.activeType,
             active: 'active',
+            modalNav: 'modal-nav',
             projects: [],
             filteredProjects: [],
             extendedActive: false,
@@ -91,9 +92,16 @@ export default {
 .modal-body-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 15px;
+    padding: 20px 20px;
 }
 .active {
-    color: blue;
+    color: red;
+}
+.modal-nav {
+   font-size: 20px;
+   padding: 0px 5px;
+}
+.modal-nav:hover {
+    cursor: pointer;
 }
 </style>
