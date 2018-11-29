@@ -1,11 +1,12 @@
 <template>
     <div class="project-extended-container">
-        <div class="focused-image"></div>
+        <div class="focused-image-container">
+            <img class="focused-image" :src="mainDisplayedImage"/>
+        </div>
         <div class="thumbnail-container">
-            <div class="thumbnail-image a"></div>
-            <div class="thumbnail-image b"></div>
-            <div class="thumbnail-image c"></div>
-            <div class="thumbnail-image d"></div>
+            <img class="thumbnail-image" v-for="(link, i) in project.image_links"
+            :key="project.id + Math.random()"
+            :src="link"/>
         </div>
     </div>
 </template>
@@ -14,8 +15,24 @@
 export default {
     name: 'modalProjectExtended',
     props: ['project'],
+    data() {
+        return {
+            intervalId: 0,
+            startingPictureIndex: 0
+        }
+    },
+    computed: {
+        mainDisplayedImage() {
+            let link = this.project.image_links[this.startingPictureIndex]
+            return link
+        }
+    },
     mounted() {
-        console.log(this._props.project)
+        if(this.project.image_links.length && !this.intervalId) {
+            this.intervalId = setInterval(() => {
+                this.startingPictureIndex === this.project.image_links.length - 1 ? this.startingPictureIndex = 0 : this.startingPictureIndex += 1;
+            }, 4000)
+        }
     }
 }
 </script>
@@ -33,9 +50,13 @@ export default {
     padding: 20px;
     display: flex;
 }
-.focused-image {
+.focused-image-container {
     width: 70%;
-    background-color: black;
+    height: 100%;
+}
+.focused-image {
+    height: 100%;
+    width: 100%;
 }
 .thumbnail-container {
     width: 30%;
@@ -48,17 +69,5 @@ export default {
     width: 100%;
     height: 100px;
     margin-bottom: 10px;
-}
-.a {
-    background-color: black;
-}
-.b {
-    background-color: red;
-}
-.c {
-    background-color: green;
-}
-.d {
-    background-color: blue;
 }
 </style>
