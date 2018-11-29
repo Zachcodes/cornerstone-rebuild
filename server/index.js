@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const massive = require('massive')
 const pc = require('./controllers/projectsController')
 const cc = require('./controllers/contactController')
+const fs = require('fs')
 require('dotenv').config()
 let {SERVER_PORT, CONNECTION_STRING} = process.env 
 
@@ -20,7 +21,9 @@ app.post('/api/contact', cc.sendEmail)
 
 //Image endpoints 
 app.get('/images/:filename', (req, res) => {
-  console.log('getting here')
+  let { filename } = req.params
+  var img = fs.readFileSync(`${__dirname}/images/${filename}`)
+  res.status(200).send(img)
 })
 
 
