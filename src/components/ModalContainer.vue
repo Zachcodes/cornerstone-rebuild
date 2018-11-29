@@ -80,6 +80,7 @@ export default {
     left: 20px;
     bottom: 20px;
     background-color: #7474743d;
+    overflow: auto;
 }
 .modal-header-container {
     display: flex;
@@ -90,14 +91,7 @@ export default {
 .modal-body-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     padding: 0 15px;
-}
-.modal-icon-container {
-    background-color: black;
-    width: 30%;
-    height: 200px;
-    margin-bottom: 20px;
 }
 .active {
     color: blue;

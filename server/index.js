@@ -5,7 +5,7 @@ const pc = require('./controllers/projectsController')
 const cc = require('./controllers/contactController')
 require('dotenv').config()
 let {SERVER_PORT, CONNECTION_STRING} = process.env 
-console.log(CONNECTION_STRING)
+
 const app = express()
 
 app.use(bodyParser.json())
