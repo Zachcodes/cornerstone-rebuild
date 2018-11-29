@@ -65,9 +65,9 @@ export default {
     },
     mounted() {
         axios.get('/api/projects').then(res => {
-            let {data} = res; 
-            this.projects = data;
-            this.filteredProjects = data.filter( project => project.type === this.activeTypeState)
+            let projects = res.data; 
+            this.projects = projects;
+            this.filteredProjects = projects.filter( project => project.type === this.activeTypeState)
         })
     }
 }
