@@ -4,19 +4,28 @@
             <img class="focused-image" :src="mainDisplayedImage"/>
         </div>
         <div class="thumbnail-container">
-            <div v-for="(link, i) in project.image_links" v-bind:class="[startingPictureIndex === i ? active : '', thumbnailImageContainer]"
+            <!-- <div v-for="(link, i) in project.image_links" v-bind:class="[startingPictureIndex === i ? active : '', thumbnailImageContainer]"
             :key="project.id + Math.random()"
-            :src="link">
+            >
                 <img class="thumbnail-image" :src="link"/>
-            </div>
+            </div> -->
+            <MiniProjectImage v-for="(link, i) in project.image_links"
+            :key="project.id + Math.random()"
+            :selected="i === startingPictureIndex"
+            :link="link"           
+            />
         </div>
     </div>
 </template>
 
 <script>
+import MiniProjectImage from './MiniProjectImage.vue'
 export default {
     name: 'modalProjectExtended',
     props: ['project'],
+    components: {
+        MiniProjectImage
+    },
     data() {
         return {
             intervalId: 0,
@@ -41,7 +50,7 @@ export default {
         if(this.project.image_links.length && !this.intervalId) {
             this.intervalId = setInterval(() => {
                 this.startingPictureIndex === this.project.image_links.length - 1 ? this.startingPictureIndex = 0 : this.startingPictureIndex += 1;
-            }, 3000)
+            }, 8000)
         }
     }
 }
@@ -74,7 +83,7 @@ export default {
     padding: 0 10px;
     flex-direction: column;
 }
-.thumbnail-image-container {
+/* .thumbnail-image-container {
     width: 100%;
     height: 100px;
     margin-bottom: 10px;
@@ -86,5 +95,5 @@ export default {
 .active-image {
     height: 120px;
     transition: height 2s;
-}
+} */
 </style>
