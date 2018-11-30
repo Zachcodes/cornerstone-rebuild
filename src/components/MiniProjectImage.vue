@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="[selected ? active : '', thumbnailImageContainer]">
+    <div v-bind:class="[selected ? active : '', thumbnailImageContainer]" v-on:click="selectMainImage(index)">
         <img class="thumbnail-image" :src="link"/>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
     name: 'miniProjectImage',
-    props: ['selected', 'link'],
+    props: ['selected', 'link', 'index', 'selectMainImage'],
     data() {
         return {
             thumbnailImageContainer: 'thumbnail-image-container',
@@ -23,6 +23,9 @@ export default {
     height: 100px;
     margin-bottom: 10px;
     
+}
+.thumbnail-image-container:hover {
+    cursor: pointer;
 }
 .active-mini-image {
 
