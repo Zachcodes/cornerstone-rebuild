@@ -4,12 +4,11 @@ module.exports = {
         let { name, email, subject, message, requestCallback, phone, timeValue } = req.body
         message = `<html>Name: ${name}<br>${message}`;
         if(requestCallback && phone) {
-        message = `${message}<br>Requested Callback: True<br>Phone: ${phone}<br>Best Time To Call: ${timeValue.hh}:${timeValue.mm} ${timeValue.A}</html>`;
+        message = `${message}<br>Requested Callback: Yes<br>Phone: ${phone}<br>Best Time To Call: ${timeValue.hh}:${timeValue.mm} ${timeValue.A}</html>`;
         }
         else {
-        message = `${message}<br>Requested Callback: False</html>`;
+        message = `${message}<br>Requested Callback: No</html>`;
         }
-        console.log(process.env.EMAIL_USERNAME,process.env.EMAIL_PASSWORD)
         //nodemailer
         const nodemailer = require('nodemailer');
         var transporter = nodemailer.createTransport({
@@ -27,11 +26,9 @@ module.exports = {
         };
         transporter.sendMail(mailOptions, function (err, info) {
         if(err) {
-            console.log(1111, err)
             res.send(err)
         }
         else {
-            console.log(2222)
             res.status(200).send('Success');
         }
         });

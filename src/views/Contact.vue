@@ -1,24 +1,26 @@
 <template>
     <div class="contact-main-container">
+        <form v-on:submit.prevent="submitForm" class="contact-form">
+            <div class="contact-form-row spaced">Name: <input v-model="name"/></div>
+            <div class="contact-form-row spaced">Email: <input v-model="email" v-on:change="emailChange" v-bind:class="{invalid: emailTouched && !emailValid}"/></div>
+            <div class="contact-form-row spaced">Subject: <input v-model="subject"/></div>
+            <div class="contact-form-row spaced">Message: <input v-model="message"/></div>
+            <div class="contact-form-row">Request callback: <input type="checkbox" v-model="requestCallback"/></div>
+            <VueTimepicker format="hh:mm A"
+            :minute-interval="5"
+            v-model="timeValue"
+            v-if="requestCallback"
+            class="contact-form-row"></VueTimepicker>
+            <div class="contact-form-row spaced">Phone: <input v-model="phone"/></div>
+            <button v-on:submit.prevent="submitForm"
+            v-bind:disabled="!emailTouched && !emailValid"
+            v-bind:class="[emailClassCheck ? buttonDisabled : '', contactFormButton]">Submit Form</button>
+        </form>
         <div class="contact-information-container"> 
             <div><span>Address: my address</span></div> 
             <div><span>Phone: my phone</span></div>
             <div><span>Email: my email</span></div>
         </div>
-        <form v-on:submit.prevent="submitForm" class="contact-form">
-            <div>Name: <input v-model="name"/></div>
-            <div>Email: <input v-model="email" v-on:change="emailChange" v-bind:class="{invalid: emailTouched && !emailValid}"/></div>
-            <div>Subject: <input v-model="subject"/></div>
-            <div>Message: <input v-model="message"/></div>
-            <div>Request callback: <input type="checkbox" v-model="requestCallback"/></div>
-            <VueTimepicker format="hh:mm A"
-            :minute-interval="5"
-            v-model="timeValue"
-            v-if="requestCallback"></VueTimepicker>
-            <div>Phone: <input v-model="phone"/></div>
-            <button v-on:submit.prevent="submitForm"
-            v-bind:disabled="!emailTouched && !emailValid">Submit Form</button>
-        </form>
     </div>
 </template>
 
@@ -42,7 +44,9 @@ export default {
                 hh: "12",
                 mm: "00",
                 A: "PM"
-            }
+            },
+            buttonDisabled: 'button-disabled',
+            contactFormButton: 'contact-form-button'
         }
     },
     components: {
@@ -83,16 +87,18 @@ export default {
                 return re.test(String(email).toLowerCase());
             }
         }
+    },
+    computed: {
+        emailClassCheck() {
+            if(this.emailValid && this.emailTouched) return true 
+            return false
+        }
     }
 }
 </script>
 
 <style>
 .contact-main-container {
-  background-image: url("../assets/cdglines.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   min-height: calc(100vh - 150px);
 }
 .invalid {
@@ -102,16 +108,46 @@ export default {
     display: flex;
     padding: 10px;
     flex-direction: column;
-    box-shadow: 5px 10px 18px #888888;
     width: 200px;
-    top: 10px;
+    position: relative;
+    left: 60%;
+    top: 20px;
+    transition: box-shadow .3s, background-color .3s;
 }
 .contact-form {
     display: flex;
     padding: 10px;
     flex-direction: column;
-    box-shadow: 5px 10px 18px #888888;
     width: 200px;
-    top: 10px;
+    position: relative;
+    left: 55%;
+    transition: box-shadow .3s, background-color .3s;
+}
+.contact-form:hover {
+   background-color: white;
+   box-shadow: .5px 1px .5px #888888;
+}
+.contact-information-container:hover {
+   background-color: white;
+   box-shadow: .5px 1px .5px #888888;
+}
+.contact-form-row {
+    margin-bottom: 3px;
+}
+.spaced {
+    display: flex;
+    justify-content: space-between;
+}
+.contact-form-button {
+    height: 30px;
+    width: 100px;
+    font-size: 12px;
+    margin: auto;
+}
+.button-disabled {
+    background-color: green;
+}
+.contact-form-button:hover {
+    cursor: pointer;
 }
 </style>
