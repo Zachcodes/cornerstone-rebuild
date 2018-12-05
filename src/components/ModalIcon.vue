@@ -18,7 +18,7 @@ export default {
 <style>
 .modal-icon-container {
     width: 100%;
-    height: 200px;
+    height: 150px;
     margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
@@ -28,7 +28,9 @@ export default {
 }
 .modal-icon-picture-container {
     width: 30%;
+    max-width: 300px;
     height: 100%;
+    display: flex;
 }
 .modal-icon-picture {
     width: 100%;

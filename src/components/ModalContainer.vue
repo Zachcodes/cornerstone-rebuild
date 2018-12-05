@@ -15,7 +15,6 @@
             :openExtendedProject="openExtendedProject"
             ></ModalIcon>
         </div>
-        <button v-on:click="closeModal">Close Modal</button>
         <ModalProjectExtended v-if="extendedActive"
         :project="extendedProject"></ModalProjectExtended>
     </div>
@@ -76,12 +75,18 @@ export default {
 <style>
 .modal-container-main {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    left: 20px;
-    bottom: 20px;
+    top: 150px;
+    right: 50px;
+    left: 50px;
+    bottom: 40px;
+    /* width: 100%; */
+    max-width: 1200px;
     background-color: #7474743d;
     overflow: auto;
+    /* margin: auto; */
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 .modal-header-container {
     display: flex;
@@ -96,6 +101,7 @@ export default {
 }
 .active {
     color: red;
+    border-bottom: 1px solid black;
 }
 .modal-nav {
    font-size: 20px;

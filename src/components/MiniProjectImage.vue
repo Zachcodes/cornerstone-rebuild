@@ -20,7 +20,7 @@ export default {
 <style>
 .thumbnail-image-container {
     width: 100%;
-    height: 100px;
+    height: 150px;
     margin-bottom: 10px;
     
 }

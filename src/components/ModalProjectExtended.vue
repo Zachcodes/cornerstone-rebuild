@@ -1,12 +1,14 @@
 <template>
     <div class="project-extended-container" v-on:click="registerClick">
         <div class="focused-image-container">
-            <div class="arrow-container left" v-on:click="shiftImage('left')">
-                <font-awesome-icon :icon="{prefix: 'fas', iconName: 'arrow-left'}" class="project-arrow"></font-awesome-icon>
-            </div>
             <img class="focused-image" :src="mainDisplayedImage"/>
-            <div class="arrow-container right" v-on:click="shiftImage('right')">
-                <font-awesome-icon :icon="{prefix: 'fas', iconName: 'arrow-right'}" class="project-arrow"></font-awesome-icon>
+            <div class="navigation-image-bar">
+                <div class="arrow-container left" v-on:click="shiftImage('left')">
+                    <font-awesome-icon :icon="{prefix: 'fas', iconName: 'arrow-left'}" class="project-arrow"></font-awesome-icon>
+                </div>
+                <div class="arrow-container right" v-on:click="shiftImage('right')">
+                    <font-awesome-icon :icon="{prefix: 'fas', iconName: 'arrow-right'}" class="project-arrow"></font-awesome-icon>
+                </div>
             </div>
         </div>
         <div class="thumbnail-container">
@@ -79,7 +81,7 @@ export default {
 
 <style>
 .project-extended-container {
-    position: fixed;
+    position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
@@ -94,6 +96,8 @@ export default {
     width: 70%;
     height: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 .focused-image {
     height: 100%;
@@ -104,6 +108,7 @@ export default {
     display: flex;
     padding: 0 10px;
     flex-direction: column;
+    overflow: auto;
 }
 .arrow-container {
     position: absolute;
@@ -129,5 +134,13 @@ export default {
 }
 .right {
     right: 0;
+}
+.navigation-image-bar {
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
 }
 </style>

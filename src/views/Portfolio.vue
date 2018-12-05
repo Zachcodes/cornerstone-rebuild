@@ -1,14 +1,13 @@
 <template>
     <div class='portfolio-main-container'
     v-on:click="checkModalStatus">
-        portfolio!
         <ModalContainer
         v-if="displayModal"
         :closeModal="closeModal"
         :activeType="activeType"></ModalContainer>
-        <button v-on:click="showModal('commercial', $event)">Commercial</button>
-        <button v-on:click="showModal('residential', $event)">Residential</button>
-        <button v-on:click="showModal('institutional', $event)">Institutional</button>
+        <button v-on:click="showModal('commercial', $event)" class="modal-open-button">Commercial</button>
+        <button v-on:click="showModal('residential', $event)" class="modal-open-button">Residential</button>
+        <button v-on:click="showModal('institutional', $event)" class="modal-open-button">Institutional</button>
     </div>
 </template>
 
@@ -43,10 +42,13 @@ export default {
 
 <style>
 .portfolio-main-container {
-  background-image: url("../assets/cdglines.svg");
+  /* background-image: url("../assets/cdglines.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   min-height: calc(100vh - 150px);
+}
+.modal-open-button:hover {
+    cursor: pointer;
 }
 </style>
