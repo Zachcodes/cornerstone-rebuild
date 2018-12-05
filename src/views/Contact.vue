@@ -14,12 +14,12 @@
             <div class="contact-form-row spaced">Phone: <input v-model="phone"/></div>
             <button v-on:submit.prevent="submitForm"
             v-bind:disabled="!emailTouched && !emailValid"
-            v-bind:class="[emailClassCheck ? buttonDisabled : '', contactFormButton]">Submit Form</button>
+            v-bind:class="[!emailClassCheck ? buttonDisabled : '', contactFormButton]">Submit Form</button>
         </form>
         <div class="contact-information-container"> 
-            <div><span>Address: my address</span></div> 
-            <div><span>Phone: my phone</span></div>
-            <div><span>Email: my email</span></div>
+            <div class="spaced"><span>Address:</span> <span>222 some address</span></div> 
+            <div class="spaced"><span>Phone:</span> <span>999-999-9999</span></div>
+            <div class="spaced"><span>Email:</span> <span>john@gmail.com</span></div>
         </div>
     </div>
 </template>
@@ -65,8 +65,9 @@ export default {
                 timeValue
             }
             axios.post('/api/contact', emailInformation).then( res => {
-                alert('Success')
-            }).catch(err => alert("Couldn't send your email"))
+                Vue.toast('')
+                this.$toasted.success('Sent email', {duration: 2000})
+            }).catch(err => this.$toasted.error('Could not send email', {duration: 2000}))
         },
         emailChange() {
             if(this.email) {
@@ -143,11 +144,15 @@ export default {
     width: 100px;
     font-size: 12px;
     margin: auto;
+    background-color: #4caf50;
 }
 .button-disabled {
-    background-color: green;
+    background-color: grey;
 }
 .contact-form-button:hover {
     cursor: pointer;
+}
+.button-disabled:hover {
+    cursor: no-drop;
 }
 </style>
