@@ -1,6 +1,6 @@
 <template>
   <div class="philosophy-main-container">
-    <div class="philosophy-main-text-container">
+    <div class="philosophy-main-text-container philosophy-left">
         <div class="philosophy-text-square"></div>
         <div class="philosophy-text-line"></div>
         <div class="philosophy-text-text">
@@ -9,7 +9,7 @@
         et quasi architecto beatae vitae dicta sunt explicabo.
         </div>
     </div>
-    <div class="philosophy-main-text-container">
+    <div class="philosophy-main-text-container philosophy-right">
         <div class="philosophy-text-square"></div>
         <div class="philosophy-text-line"></div>
         <div class="philosophy-text-text">
@@ -18,7 +18,7 @@
         et quasi architecto beatae vitae dicta sunt explicabo.
         </div>
     </div>
-    <div class="philosophy-main-text-container">
+    <div class="philosophy-main-text-container philosophy-bottom">
         <div class="philosophy-text-square"></div>
         <div class="philosophy-text-line"></div>
         <div class="philosophy-text-text">
@@ -38,10 +38,10 @@ export default {
 
 <style>
 .philosophy-main-container {
-  background-image: url("../assets/cdglines.svg");
+  /* background-image: url("../assets/cdglines.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   min-height: calc(100vh - 150px);
 }
 .philosophy-main-text-container {
@@ -51,6 +51,8 @@ export default {
   padding: 5px;
   color: #00000061;
   justify-content: flex-start;
+  position: absolute;
+  z-index: 1000;
 }
 .philosophy-main-text-container:hover {
   background-color: #8080801a;
@@ -76,5 +78,15 @@ export default {
   align-items: center;
   word-wrap: break-word;
   margin-left: 4px;
+}
+.philosophy-left {
+  left: 30%;
+}
+.philosophy-right {
+  left: 60%;
+}
+.philosophy-bottom {
+  left: 55%;
+  top: 50%;
 }
 </style>

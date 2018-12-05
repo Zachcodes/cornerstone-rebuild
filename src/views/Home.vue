@@ -1,6 +1,6 @@
 <template>
   <div class="home-main-container">
-    Home!
+    <!-- <img src="../assets/cdglines.svg" class="cdg-lines"/> -->
   </div>
 </template>
 
@@ -11,11 +11,22 @@ export default {
 </script>
 
 <style>
-.home-main-container {
+body {
   background-image: url("../assets/cdglines.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+}
+.home-main-container {
+  /* background-image: url("../assets/cdglines.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
   min-height: calc(100vh - 150px);
+}
+.cdg-lines {
+  max-width: 100%;
+  height: 700px;
+  display: block;
 }
 </style>
