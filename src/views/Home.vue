@@ -2,7 +2,10 @@
   <div class="home-main-container">
     <!-- <img src="../assets/cdglines.svg" class="cdg-lines" id="mysvg"/> -->
     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-      viewBox="0 0 24000 24000"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 10 10"
+      width="100%"
+      height="100%"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       class="cdg-lines"
       id="mysvg">
@@ -33,10 +36,10 @@
       </defs>
       <g id="__x0023_Layer_x0020_1">
         <metadata id="CorelCorpID_0Corel-Layer"/>
-        <polygon class="fil0" points="2231,-599 2222,-595 13441,23464 13450,23461 " id="topleft-bottomright"/>
-        <polygon class="fil1" points="23806,9522 1023,20146 1027,20156 23811,9532 " id="bottomleft-topright"/>
-        <path class="fil2" d="M8476 23428c6,-1 10,-2 15,-2 730,-9777 5961,-18615 14068,-23972 -1,-4 -1,-9 -2,-15 -8116,5357 -13351,14204 -14081,23989z" id="bottommiddle-topright"/>
-        <polygon class="fil3" points="9958,15977 10247,15843 10112,15553 9823,15689 "/>
+        <polygon class="fil0" points="2231,-599 2222,-595 13441,23464 13450,23461 " id="topleft-bottomright" vector-effect="non-scaling-stroke"/>
+        <polygon class="fil1" points="23806,9522 1023,20146 1027,20156 23811,9532 " id="bottomleft-topright" vector-effect="non-scaling-stroke"/>
+        <path class="fil2" d="M8476 23428c6,-1 10,-2 15,-2 730,-9777 5961,-18615 14068,-23972 -1,-4 -1,-9 -2,-15 -8116,5357 -13351,14204 -14081,23989z" id="bottommiddle-topright" vector-effect="non-scaling-stroke"/>
+        <polygon class="fil3" points="9958,15977 10247,15843 10112,15553 9823,15689 " vector-effect="non-scaling-stroke"/>
         <g id="_2446627744832">
         </g>
       </g>
@@ -49,18 +52,29 @@ export default {
   name: 'home',
   mounted() {
     let mysvg = document.getElementById('mysvg')
-    let NS = mysvg.getAttribute('xmlns')
+    console.log(mysvg)
+    // let NS = mysvg.getAttribute('xmlns')
     let leftLine = document.getElementById('topleft-bottomright')
-    let dimensions = leftLine.getBoundingClientRect();
-    var pt = mysvg.createSVGPoint()
-    pt.x = dimensions.x + 10
-    pt.y = dimensions.y + 10
-    let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
-    let circle = document.createElementNS(NS, 'circle');
-    circle.setAttributeNS(null, 'cx', svgP.x);
-    circle.setAttributeNS(null, 'cy', svgP.y);
-    circle.setAttributeNS(null, 'r', 10);
-    mysvg.appendChild(circle)
+    console.log(leftLine)
+    // let dimensions = leftLine.getBoundingClientRect();
+    // console.log('dimensions', dimensions)
+    // var pt = mysvg.createSVGPoint()
+    // pt.x = dimensions.x + 10
+    // pt.y = dimensions.y + 10
+    // let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
+    // let circle = document.createElementNS(NS, 'circle');
+    // circle.setAttributeNS(null, 'cx', svgP.x);
+    // circle.setAttributeNS(null, 'cy', svgP.y);
+    // circle.setAttributeNS(null, 'r', 10);
+    // let new_row = document.createElement('div')
+    // new_row.classList.add('test-class')
+    // new_row.style.top = '145px';
+    // new_row.style.left = '40px'
+    // console.log(new_row)
+    // mysvg.appendChild(circle)
+    // mysvg.appendChild(new_row)
+
+
   }
 }
 </script>
@@ -78,11 +92,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover; */
   min-height: calc(100vh - 150px);
+  height: 400px;
+  width: 400px;
 }
 .cdg-lines {
   max-width: 100%;
-  height: 700px;
-  display: block;
+  height: 100%;
+  width: 100%;
 }
 .fil3 {
   fill:#E94057;
@@ -99,5 +115,11 @@ body {
 .fil0 {
   fill:url(#id2); 
   fill-rule:nonzero;
+}
+.test-class {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  position: absolute;
 }
 </style>
