@@ -4,10 +4,10 @@
             <img class="focused-image" :src="mainDisplayedImage"/>
             <div class="navigation-image-bar">
                 <div class="arrow-container left" v-on:click="shiftImage('left')">
-                    <font-awesome-icon :icon="{prefix: 'fas', iconName: 'arrow-left'}" class="project-arrow"></font-awesome-icon>
+                    <font-awesome-icon :icon="{prefix: 'fa', iconName: 'angle-left'}" class="project-arrow"></font-awesome-icon>
                 </div>
                 <div class="arrow-container right" v-on:click="shiftImage('right')">
-                    <font-awesome-icon :icon="{prefix: 'fas', iconName: 'arrow-right'}" class="project-arrow"></font-awesome-icon>
+                    <font-awesome-icon :icon="{prefix: 'fa', iconName: 'angle-right'}" class="project-arrow"></font-awesome-icon>
                 </div>
             </div>
         </div>
@@ -114,20 +114,24 @@ export default {
     position: absolute;
     height: 100%;
     width: 5%;
-    background-color: #ffffff38;
-    top: 0;
+    background-color: #ffffff3d;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2000;
 }
 .arrow-container:hover {
     width: 6%;
     cursor: pointer;
     transition: width 1s;
 }
+.arrow-container:hover {
+    background-color: #ffffffa8;
+}
 .project-arrow {
     font-size: 34px;
-    color: white;
+    color: black;
 }
 .left {
     left: 0;
@@ -141,6 +145,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: transparent;
+    background-color: #ffffff3d;
 }
 </style>

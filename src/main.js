@@ -4,11 +4,13 @@ import router from './router'
 import Toasted from 'vue-toasted'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import {faArrowLeft, faArrowRight, faAngleRight, faAngleLeft} from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(faArrowLeft)
-library.add(faArrowRight)
+// library.add(faArrowLeft)
+// library.add(faArrowRight)
+library.add(faAngleRight)
+library.add(faAngleLeft)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(Toasted)
