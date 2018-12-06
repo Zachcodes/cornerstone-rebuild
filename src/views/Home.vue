@@ -48,44 +48,19 @@
 export default {
   name: 'home',
   mounted() {
-    // let mysvg = document.getElementById('mysvg')
-    // let ns = mysvg.getAttribute('xmlns')
-    // mysvg.addEventListener('click', (e) => {
-    //   console.log('clientx', e.clientX)
-    //   console.log('clienty', e.clientY)
-    // })
-    // let leftLine = document.getElementById('topleft-bottomright')
-    // console.log(leftLine)
-    // // let middleLine = document.getElementById('bottomleft-topright')
-    // // let rightLine = document.getElementById('bottommiddle-topright')
-    // console.log(leftLine.points[0])
-    // var pt = mysvg.createSVGPoint()
-    // pt.x = 189
-    // pt.y = 288
-    // let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
-    // console.log(svgP)
-    // let circle = document.createElementNS(ns, 'circle');
-    // circle.setAttributeNS(null, 'cx', 246);
-    // circle.setAttributeNS(null, 'cy', 398);
-    // circle.setAttributeNS(null, 'r', 10);
-    // mysvg.appendChild(circle)
-    var svg = document.getElementById('mysvg'),
-    NS = svg.getAttribute('xmlns');
-
-    svg.addEventListener('click', function(e) {
-      console.log('e.clientX', e.clientX, 'e.clientY', e.clientY)
-      var pt = svg.createSVGPoint(), svgP, circle;
-      
-      pt.x = e.clientX;
-      pt.y = e.clientY;
-      svgP = pt.matrixTransform(svg.getScreenCTM().inverse());
-
-      circle = document.createElementNS(NS, 'circle');
-      circle.setAttributeNS(null, 'cx', svgP.x);
-      circle.setAttributeNS(null, 'cy', svgP.y);
-      circle.setAttributeNS(null, 'r', 10);
-      svg.appendChild(circle);
-    }, false);
+    let mysvg = document.getElementById('mysvg')
+    let NS = mysvg.getAttribute('xmlns')
+    let leftLine = document.getElementById('topleft-bottomright')
+    let dimensions = leftLine.getBoundingClientRect();
+    var pt = mysvg.createSVGPoint()
+    pt.x = dimensions.x + 10
+    pt.y = dimensions.y + 10
+    let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
+    let circle = document.createElementNS(NS, 'circle');
+    circle.setAttributeNS(null, 'cx', svgP.x);
+    circle.setAttributeNS(null, 'cy', svgP.y);
+    circle.setAttributeNS(null, 'r', 10);
+    mysvg.appendChild(circle)
   }
 }
 </script>
