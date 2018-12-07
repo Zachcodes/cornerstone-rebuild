@@ -54,63 +54,81 @@
 </template>
 
 <script>
+import fn from '../helper'
 export default {
   name: 'home',
+  data() {
+    return {
+      mainContainerId: 'home-container'
+    }
+  },
   mounted() {
-    let mysvg = document.getElementById('mysvg')
-    // mysvg.addEventListener('click', showCoordinates)
-    // function showCoordinates(e) {
-    //   console.log('x', e.clientX, 'y', e.clientY)
-    // }
-    let NS = mysvg.getAttribute('xmlns')
-    let leftLine = document.getElementById('topleft-bottomright')
-    // console.log(leftLine)
-    let dimensions = leftLine.getBoundingClientRect();
-    console.log('left line', leftLine)
-    console.log('left line.points', leftLine.points)
-    console.log('dimensions', dimensions)
-    // var pt = mysvg.createSVGPoint()
-    // pt.x = dimensions.x + 10
-    // pt.y = dimensions.y + 10
-    // let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
-    // TODO: Move this into the original svg after testing
-    // let newPath = this.createPath('2000 0', '1000 500', '1000 500', '0 500')
-    let newPaths = [
-      {
-        m1: '5000 3000',
-        l1: '4000 3500',
-        m2: '4000 3500',
-        l2: '3000 3500',
-        id: 'home-line-1'
-      },
-      {
-        m1: '6000 4000',
-        l1: '5000 4500',
-        m2: '5000 4500',
-        l2: '4000 4500',
-        id: 'home-line-2'
-      }
-    ]
-    newPaths.forEach( pointsObj => {
-      let newPath = this.createPath(pointsObj)
-      mysvg.appendChild(newPath)
-    })
-    let homeLine1 = document.getElementById('home-line-1')
-    let homeLine1Dimensions = homeLine1.getBoundingClientRect();
-    console.log(homeLine1Dimensions)
-    let newRow = document.createElement('span')
-    newRow.setAttribute("value", "/portfolio")
-    let innerText = document.createTextNode('Portfolio')
-    newRow.appendChild(innerText)
-    newRow.classList.add('nav-item')
-    //Got this value from subtracting the height of the logo from the value of the y in the homeline dimensions
-    //line.y - logo height - 10px
-    newRow.style.top = homeLine1Dimensions.y - 150 - 10 + 'px';
-    // line.x - 25px 
-    newRow.style.left = homeLine1Dimensions.x - 25 + 'px'
-    newRow.addEventListener('click', this.navToRoute)
-    let homeContainer = document.getElementById('home-container')
-    homeContainer.appendChild(newRow)
+    console.log(fn)
+    let {createPath, calcNavItems} = fn;
+    console.log(createPath, calcNavItems)
+    calcNavItems.call(this, createPath)
+    
+    // let currentPath = this.$router.history.current.path
+    // let currentRouteName = this.$router.history.current.name
+    // let routePathObjects = [
+    //   {
+    //     path: '/',
+    //     text: 'Home',
+    //     m1: '5000 3000',
+    //     l1: '4000 3500',
+    //     m2: '4000 3500',
+    //     l2: '3000 3500',
+    //     id: `${currentRouteName}-line-1`
+    //   },
+    //   {
+    //     path: '/portfolio',
+    //     text: 'Portfolio',
+    //     m1: '6000 4000',
+    //     l1: '5000 4500',
+    //     m2: '5000 4500',
+    //     l2: '4000 4500',
+    //     id: `${currentRouteName}-line-2`
+    //   },
+    //   {
+    //     path: '/philosophy',
+    //     text: 'Philosophy',
+    //     m1: '7000 5000',
+    //     l1: '6000 5500',
+    //     m2: '6000 5500',
+    //     l2: '5000 5500',
+    //     id: `${currentRouteName}-line-3`
+    //   },
+    //   {
+    //     path: '/contact',
+    //     text: 'Contact',
+    //     m1: '8000 6000',
+    //     l1: '7000 6500',
+    //     m2: '7000 6500',
+    //     l2: '6000 6500',
+    //     id: `${currentRouteName}-line-4`
+    //   }
+    // ]
+    // let mysvg = document.getElementById('mysvg')
+    // let NS = mysvg.getAttribute('xmlns')
+    // let leftLine = document.getElementById('topleft-bottomright')
+    // let dimensions = leftLine.getBoundingClientRect();
+    // routePathObjects.forEach( pathObj => {
+    //   let newPath = this.createPath(pathObj)
+    //   mysvg.appendChild(newPath)
+    //   let line = document.getElementById(pathObj.id)
+    //   let lineDimensions = line.getBoundingClientRect();
+    //   let newRow = document.createElement('span')
+    //   newRow.setAttribute("value", pathObj.path)
+    //   let innerText = document.createTextNode(pathObj.text)
+    //   newRow.appendChild(innerText)
+    //   newRow.classList.add('nav-item')
+    //   newRow.style.top = lineDimensions.y - 150 - 10 + 'px';
+    //   newRow.style.left = lineDimensions.x - 25 + 'px'
+    //   newRow.addEventListener('click', this.navToRoute)
+
+    //   let mainContainer = document.getElementById(this.mainContainerId)
+    //   mainContainer.appendChild(newRow)
+    // })
   },
   methods: {
     navToRoute(e) {
