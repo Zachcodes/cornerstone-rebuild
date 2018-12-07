@@ -1,7 +1,7 @@
 <template>
   <div class="home-main-container" id="home-container">
     <!-- <img src="../assets/cdglines.svg" class="cdg-lines" id="mysvg"/> -->
-    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 24000 24000"
       width="100%"
@@ -43,18 +43,15 @@
         <g id="_2446627744832">
         </g>
       </g>
-    </svg>
-    <!-- <svg id="mysvg2">
-      <g>  -->
-        <!-- <line x1="0" y1="0" x2="500" y2="500" style="stroke:rgb(0,0,0);stroke-width:2"/> -->
-        <!-- <path d="M200 0 L100 50 Z M100 50 L0 50" style="stroke:rgb(0,0,0);stroke-width:1"/> -->
-      <!-- </g>
     </svg> -->
+    <CdgMainSVG/>
   </div>
 </template>
 
 <script>
 import fn from '../helper'
+import CdgMainSVG from '../components/CdgMainSVG.vue'
+console.log(CdgMainSVG)
 export default {
   name: 'home',
   data() {
@@ -62,10 +59,14 @@ export default {
       mainContainerId: 'home-container'
     }
   },
+  // components: {
+  //   CdgMainSvg
+  // },
+  components: {
+    CdgMainSVG
+  },
   mounted() {
-    console.log(fn)
     let {createPath, calcNavItems} = fn;
-    console.log(createPath, calcNavItems)
     calcNavItems.call(this, createPath)
     
     // let currentPath = this.$router.history.current.path

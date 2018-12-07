@@ -9,8 +9,7 @@ export default {
         path.setAttribute('id', id);
         return path;
     },
-    calcNavItems(fn) {
-        console.log('fn', fn)
+    calcNavItems(cb) {
         let currentPath = this.$router.history.current.path
         let currentRouteName = this.$router.history.current.name
         let routePathObjects = [
@@ -56,7 +55,7 @@ export default {
         let leftLine = document.getElementById('topleft-bottomright')
         let dimensions = leftLine.getBoundingClientRect();
         routePathObjects.forEach( pathObj => {
-          let newPath = createPath(pathObj)
+          let newPath = cb(pathObj)
           mysvg.appendChild(newPath)
           let line = document.getElementById(pathObj.id)
           let lineDimensions = line.getBoundingClientRect();
