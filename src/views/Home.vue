@@ -1,9 +1,9 @@
 <template>
-  <div class="home-main-container">
+  <div class="home-main-container" id="home-container">
     <!-- <img src="../assets/cdglines.svg" class="cdg-lines" id="mysvg"/> -->
     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
       preserveAspectRatio="xMidYMid meet"
-      viewBox="0 0 10 10"
+      viewBox="0 0 24000 24000"
       width="100%"
       height="100%"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -44,6 +44,12 @@
         </g>
       </g>
     </svg>
+    <svg>
+      <g> 
+        <!-- <line x1="0" y1="0" x2="500" y2="500" style="stroke:rgb(0,0,0);stroke-width:2"/> -->
+        <path d="M200 0 L100 50 Z M100 50 L0 50" style="stroke:rgb(0,0,0);stroke-width:1"/>
+      </g>
+    </svg>
   </div>
 </template>
 
@@ -52,29 +58,44 @@ export default {
   name: 'home',
   mounted() {
     let mysvg = document.getElementById('mysvg')
-    console.log(mysvg)
-    // let NS = mysvg.getAttribute('xmlns')
+    // mysvg.addEventListener('click', showCoordinates)
+    // function showCoordinates(e) {
+    //   console.log('x', e.clientX, 'y', e.clientY)
+    // }
+    let NS = mysvg.getAttribute('xmlns')
     let leftLine = document.getElementById('topleft-bottomright')
-    console.log(leftLine)
-    // let dimensions = leftLine.getBoundingClientRect();
+    // console.log(leftLine)
+    let dimensions = leftLine.getBoundingClientRect();
     // console.log('dimensions', dimensions)
     // var pt = mysvg.createSVGPoint()
     // pt.x = dimensions.x + 10
     // pt.y = dimensions.y + 10
     // let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
-    // let circle = document.createElementNS(NS, 'circle');
-    // circle.setAttributeNS(null, 'cx', svgP.x);
-    // circle.setAttributeNS(null, 'cy', svgP.y);
-    // circle.setAttributeNS(null, 'r', 10);
-    // let new_row = document.createElement('div')
-    // new_row.classList.add('test-class')
-    // new_row.style.top = '145px';
-    // new_row.style.left = '40px'
-    // console.log(new_row)
+    let newRow = document.createElement('span')
+    newRow.setAttribute("value", "/portfolio")
+    let innerText = document.createTextNode('Portfolio')
+    newRow.appendChild(innerText)
+    newRow.classList.add('nav-item')
+    newRow.style.top = '145px';
+    newRow.style.left = '40px'
+    newRow.addEventListener('click', this.navToRoute)
+    let homeContainer = document.getElementById('home-container')
+    homeContainer.appendChild(newRow)
+    // console.log(newRow)
     // mysvg.appendChild(circle)
-    // mysvg.appendChild(new_row)
+    // mysvg.appendChild(newRow)
 
 
+
+  },
+  methods: {
+    navToRoute(e) {
+      let route = e.target.getAttribute('value')
+      this.$router.push(route)
+    },
+    createLine(m1, l1, m2, l2) {
+      let d = `M${m1} L${l1} Z M100 50 L0 50` 
+    }
   }
 }
 </script>
@@ -92,8 +113,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover; */
   min-height: calc(100vh - 150px);
-  height: 400px;
-  width: 400px;
+  /* NOTE: min-height will not set the height of the svg. Must use explicit height percentage for some reason?*/
+  /* height: 400px;
+  width: 400px; */
+  position: relative;
 }
 .cdg-lines {
   max-width: 100%;
@@ -116,10 +139,11 @@ body {
   fill:url(#id2); 
   fill-rule:nonzero;
 }
-.test-class {
-  width: 100px;
-  height: 100px;
-  background-color: black;
+.nav-item {
+  color: black;
   position: absolute;
+}
+.nav-item-active {
+  color: red;
 }
 </style>
