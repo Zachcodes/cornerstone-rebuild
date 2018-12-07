@@ -96,17 +96,18 @@ export default {
       mysvg.appendChild(newPath)
     })
     let homeLine1 = document.getElementById('home-line-1')
-    console.log('homeLine1 dimensions', homeLine1.getBoundingClientRect())
+    let homeLine1Dimensions = homeLine1.getBoundingClientRect();
+    console.log(homeLine1Dimensions)
     let newRow = document.createElement('span')
     newRow.setAttribute("value", "/portfolio")
     let innerText = document.createTextNode('Portfolio')
     newRow.appendChild(innerText)
     newRow.classList.add('nav-item')
-    newRow.style.top = '269px';
     //Got this value from subtracting the height of the logo from the value of the y in the homeline dimensions
-    newRow.style.top = '119px';
-    // Got from homeLine1 dimenrsions right
-    newRow.style.left = '115px'
+    //line.y - logo height - 10px
+    newRow.style.top = homeLine1Dimensions.y - 150 - 10 + 'px';
+    // line.x - 25px 
+    newRow.style.left = homeLine1Dimensions.x - 25 + 'px'
     newRow.addEventListener('click', this.navToRoute)
     let homeContainer = document.getElementById('home-container')
     homeContainer.appendChild(newRow)
@@ -172,6 +173,9 @@ body {
 .nav-item {
   color: black;
   position: absolute;
+}
+.nav-item:hover {
+  cursor: pointer;
 }
 .nav-item-active {
   color: red;
