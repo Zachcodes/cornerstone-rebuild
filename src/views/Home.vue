@@ -44,10 +44,10 @@
         </g>
       </g>
     </svg>
-    <svg>
+    <svg id="mysvg2">
       <g> 
         <!-- <line x1="0" y1="0" x2="500" y2="500" style="stroke:rgb(0,0,0);stroke-width:2"/> -->
-        <path d="M200 0 L100 50 Z M100 50 L0 50" style="stroke:rgb(0,0,0);stroke-width:1"/>
+        <!-- <path d="M200 0 L100 50 Z M100 50 L0 50" style="stroke:rgb(0,0,0);stroke-width:1"/> -->
       </g>
     </svg>
   </div>
@@ -81,20 +81,25 @@ export default {
     newRow.addEventListener('click', this.navToRoute)
     let homeContainer = document.getElementById('home-container')
     homeContainer.appendChild(newRow)
-    // console.log(newRow)
-    // mysvg.appendChild(circle)
-    // mysvg.appendChild(newRow)
 
-
-
+    // TODO: Move this into the original svg after testing
+    let mysvg2 = document.getElementById('mysvg2')
+    let newPath = this.createPath('200 0', '100 50', '100 50', '0 50')
+    console.log(newPath)
+    mysvg2.appendChild(newPath)
   },
   methods: {
     navToRoute(e) {
       let route = e.target.getAttribute('value')
       this.$router.push(route)
     },
-    createLine(m1, l1, m2, l2) {
-      let d = `M${m1} L${l1} Z M100 50 L0 50` 
+    createPath(m1, l1, m2, l2) {
+      let d = `M${m1} L${l1} Z M${m2} L${l2} Z` 
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('stroke', 'rgb(0,0,0)');
+      path.setAttribute('stroke-width', '1');
+      return path;
     }
   }
 }
