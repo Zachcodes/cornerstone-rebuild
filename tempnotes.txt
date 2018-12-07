@@ -1,9 +1,10 @@
 1. Need to create a class for a nav span that will contain the text to be navigated to - DONE
 2. insert into dom - DONE
 3. Attach event handler to each new span - DONE
-4. draw svg lines
+4. draw svg lines - DONE
 5. position nav span above svg lines
 6. Break out function so it is reused once per route 
 7. Check to see whether it is better to be done on mounted or whether it should be done before hand 
 8. Set the pixel sizes dynamically based on the positioning of the top of the line on each route 
 9. Make sure that it recalculates when the screen size changes
+10. calculate exact length that each one needs to go down to fit well on the screen

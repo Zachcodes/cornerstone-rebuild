@@ -44,12 +44,12 @@
         </g>
       </g>
     </svg>
-    <svg id="mysvg2">
-      <g> 
+    <!-- <svg id="mysvg2">
+      <g>  -->
         <!-- <line x1="0" y1="0" x2="500" y2="500" style="stroke:rgb(0,0,0);stroke-width:2"/> -->
         <!-- <path d="M200 0 L100 50 Z M100 50 L0 50" style="stroke:rgb(0,0,0);stroke-width:1"/> -->
-      </g>
-    </svg>
+      <!-- </g>
+    </svg> -->
   </div>
 </template>
 
@@ -66,39 +66,64 @@ export default {
     let leftLine = document.getElementById('topleft-bottomright')
     // console.log(leftLine)
     let dimensions = leftLine.getBoundingClientRect();
-    // console.log('dimensions', dimensions)
+    console.log('left line', leftLine)
+    console.log('left line.points', leftLine.points)
+    console.log('dimensions', dimensions)
     // var pt = mysvg.createSVGPoint()
     // pt.x = dimensions.x + 10
     // pt.y = dimensions.y + 10
     // let svgP = pt.matrixTransform(mysvg.getScreenCTM().inverse())
+    // TODO: Move this into the original svg after testing
+    // let newPath = this.createPath('2000 0', '1000 500', '1000 500', '0 500')
+    let newPaths = [
+      {
+        m1: '5000 3000',
+        l1: '4000 3500',
+        m2: '4000 3500',
+        l2: '3000 3500',
+        id: 'home-line-1'
+      },
+      {
+        m1: '6000 4000',
+        l1: '5000 4500',
+        m2: '5000 4500',
+        l2: '4000 4500',
+        id: 'home-line-2'
+      }
+    ]
+    newPaths.forEach( pointsObj => {
+      let newPath = this.createPath(pointsObj)
+      mysvg.appendChild(newPath)
+    })
+    let homeLine1 = document.getElementById('home-line-1')
+    console.log('homeLine1 dimensions', homeLine1.getBoundingClientRect())
     let newRow = document.createElement('span')
     newRow.setAttribute("value", "/portfolio")
     let innerText = document.createTextNode('Portfolio')
     newRow.appendChild(innerText)
     newRow.classList.add('nav-item')
-    newRow.style.top = '145px';
-    newRow.style.left = '40px'
+    newRow.style.top = '269px';
+    //Got this value from subtracting the height of the logo from the value of the y in the homeline dimensions
+    newRow.style.top = '119px';
+    // Got from homeLine1 dimenrsions right
+    newRow.style.left = '115px'
     newRow.addEventListener('click', this.navToRoute)
     let homeContainer = document.getElementById('home-container')
     homeContainer.appendChild(newRow)
-
-    // TODO: Move this into the original svg after testing
-    let mysvg2 = document.getElementById('mysvg2')
-    let newPath = this.createPath('200 0', '100 50', '100 50', '0 50')
-    console.log(newPath)
-    mysvg2.appendChild(newPath)
   },
   methods: {
     navToRoute(e) {
       let route = e.target.getAttribute('value')
       this.$router.push(route)
     },
-    createPath(m1, l1, m2, l2) {
+    createPath(points) {
+      let {m1, l1, m2, l2, id} = points;
       let d = `M${m1} L${l1} Z M${m2} L${l2} Z` 
       var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', d);
       path.setAttribute('stroke', 'rgb(0,0,0)');
       path.setAttribute('stroke-width', '1');
+      path.setAttribute('id', id);
       return path;
     }
   }
