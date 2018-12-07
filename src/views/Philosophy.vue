@@ -1,5 +1,6 @@
 <template>
-  <div class="philosophy-main-container">
+  <div class="philosophy-main-container" id="philosophy-container">
+    <CdgMainSVG/>
     <div class="philosophy-main-text-container philosophy-left">
         <div class="philosophy-text-square"></div>
         <div class="philosophy-text-line"></div>
@@ -31,18 +32,30 @@
 </template>
 
 <script>
+import fn from '../helper'
+import CdgMainSVG from '../components/CdgMainSVG.vue'
 export default {
-    name: 'philosophy'
+    name: 'philosophy',
+    data() {
+      return {
+        mainContainerId: 'philosophy-container'
+      }
+    },
+    components: {
+      CdgMainSVG
+    },
+    mounted() {
+      let {createPath, calcNavItems, navToRoute} = fn;
+      navToRoute = navToRoute.bind(this)
+      calcNavItems.call(this, createPath, navToRoute)
+    }
 }
 </script>
 
 <style>
 .philosophy-main-container {
-  /* background-image: url("../assets/cdglines.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
   min-height: calc(100vh - 150px);
+  position: relative;
 }
 .philosophy-main-text-container {
   display: flex;

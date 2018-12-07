@@ -1,5 +1,6 @@
 <template>
-    <div class="contact-main-container">
+    <div class="contact-main-container" id="contact-container">
+        <CdgMainSVG/>
         <form v-on:submit.prevent="submitForm" class="contact-form">
             <div class="contact-form-row spaced">Name: <input v-model="name"/></div>
             <div class="contact-form-row spaced">Email: <input v-model="email" v-on:change="emailChange" v-bind:class="{invalid: emailTouched && !emailValid}"/></div>
@@ -27,7 +28,8 @@
 <script>
 import VueTimepicker from 'vue2-timepicker';
 import axios from 'axios';
-
+import fn from '../helper'
+import CdgMainSVG from '../components/CdgMainSVG.vue'
 export default {
     name: 'contact',
     data() {
@@ -46,11 +48,18 @@ export default {
                 A: "PM"
             },
             buttonDisabled: 'button-disabled',
-            contactFormButton: 'contact-form-button'
+            contactFormButton: 'contact-form-button',
+            mainContainerId: 'contact-container'
         }
     },
     components: {
-        VueTimepicker
+        VueTimepicker,
+        CdgMainSVG
+    },
+    mounted() {
+        let {createPath, calcNavItems, navToRoute} = fn;
+        navToRoute = navToRoute.bind(this)
+        calcNavItems.call(this, createPath, navToRoute)
     },
     methods: {
         submitForm() {
@@ -101,6 +110,7 @@ export default {
 <style>
 .contact-main-container {
   min-height: calc(100vh - 150px);
+  position: relative;
 }
 .invalid {
     border: 1px solid red;

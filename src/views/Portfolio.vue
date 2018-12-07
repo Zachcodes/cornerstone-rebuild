@@ -1,6 +1,8 @@
 <template>
     <div class='portfolio-main-container'
+    id="portfolio-container"
     v-on:click="checkModalStatus">
+        <CdgMainSVG/>
         <ModalContainer
         v-if="displayModal"
         :closeModal="closeModal"
@@ -13,17 +15,26 @@
 
 <script>
 import ModalContainer from '../components/ModalContainer'
+import fn from '../helper'
+import CdgMainSVG from '../components/CdgMainSVG.vue'
 export default {
   name: 'portfolio',
   components: {
-      ModalContainer
+      ModalContainer,
+      CdgMainSVG
   },
   data() {
       return {
           displayModal: false,
-          activeType: 'commercial'
+          activeType: 'commercial',
+          mainContainerId: 'portfolio-container'
       }
   }, 
+  mounted() {
+    let {createPath, calcNavItems, navToRoute} = fn;
+    navToRoute = navToRoute.bind(this)
+    calcNavItems.call(this, createPath, navToRoute)
+  },
   methods: {
       showModal(arg, e) {
           this.activeType = arg;
@@ -42,11 +53,8 @@ export default {
 
 <style>
 .portfolio-main-container {
-  /* background-image: url("../assets/cdglines.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
   min-height: calc(100vh - 150px);
+  position: relative;
 }
 .modal-open-button:hover {
     cursor: pointer;

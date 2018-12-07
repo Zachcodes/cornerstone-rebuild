@@ -9,7 +9,7 @@ export default {
         path.setAttribute('id', id);
         return path;
     },
-    calcNavItems(cb) {
+    calcNavItems(createPath, navToRoute) {
         let currentPath = this.$router.history.current.path
         let currentRouteName = this.$router.history.current.name
         let routePathObjects = [
@@ -55,7 +55,7 @@ export default {
         let leftLine = document.getElementById('topleft-bottomright')
         let dimensions = leftLine.getBoundingClientRect();
         routePathObjects.forEach( pathObj => {
-          let newPath = cb(pathObj)
+          let newPath = createPath(pathObj)
           mysvg.appendChild(newPath)
           let line = document.getElementById(pathObj.id)
           let lineDimensions = line.getBoundingClientRect();
@@ -64,12 +64,17 @@ export default {
           let innerText = document.createTextNode(pathObj.text)
           newRow.appendChild(innerText)
           newRow.classList.add('nav-item')
+          if(currentPath === pathObj.path) newRow.classList.add('nav-item-active')
           newRow.style.top = lineDimensions.y - 150 - 10 + 'px';
           newRow.style.left = lineDimensions.x - 25 + 'px'
-          newRow.addEventListener('click', this.navToRoute)
+          newRow.addEventListener('click', navToRoute)
     
           let mainContainer = document.getElementById(this.mainContainerId)
           mainContainer.appendChild(newRow)
         })   
+    },
+    navToRoute(e) {
+      let route = e.target.getAttribute('value')
+      this.$router.push(route)
     }
 }
