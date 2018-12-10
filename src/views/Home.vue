@@ -32,7 +32,8 @@ body {
   background-size: contain;
 }
 .home-main-container {
-  min-height: calc(100vh - 150px);
+  /* min-height: calc(100vh - 150px); */
+  height: 100vh;
   /* NOTE: min-height will not set the height of the svg. Must use explicit height percentage for some reason?*/
   /* height: 400px;
   width: 400px; */
