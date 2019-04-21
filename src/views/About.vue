@@ -12,7 +12,7 @@ export default {
 
 <style>
 .about-main-container {
-  background-image: url("../assets/cdglines.svg");
+  background-image: url("../assets/cdglines_new.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

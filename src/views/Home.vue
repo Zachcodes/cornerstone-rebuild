@@ -32,33 +32,15 @@ body {
   background-size: contain;
 }
 .home-main-container {
-  /* min-height: calc(100vh - 150px); */
+  position: absolute;
   height: 100vh;
-  /* NOTE: min-height will not set the height of the svg. Must use explicit height percentage for some reason?*/
-  /* height: 400px;
-  width: 400px; */
-  position: relative;
+  top: 0;
+  width: 100%;
 }
 .cdg-lines {
   max-width: 100%;
   height: 100%;
   width: 100%;
-}
-.fil3 {
-  fill:#E94057;
-  fill-rule:nonzero;
-}
-.fil1 {
-  fill:url(#id0);
-  fill-rule:nonzero;
-}
-.fil2 {
-  fill:url(#id1);
-  fill-rule:nonzero;
-}
-.fil0 {
-  fill:url(#id2); 
-  fill-rule:nonzero;
 }
 .nav-item {
   color: black;

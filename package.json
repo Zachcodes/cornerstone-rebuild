@@ -2,11 +2,12 @@
   "name": "cornerstone-rebuild",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3005",
+  "proxy": "http://localhost:4568",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "concurrently \"nodemon\" \"vue-cli-service serve\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
