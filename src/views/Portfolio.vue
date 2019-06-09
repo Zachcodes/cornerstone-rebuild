@@ -1,5 +1,5 @@
 <template>
-    <div class='portfolio-main-container'
+    <div class='home-main-container'
     id="portfolio-container"
     v-on:click="checkModalStatus">
         <CdgMainSVG/>

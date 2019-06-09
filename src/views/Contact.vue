@@ -1,5 +1,5 @@
 <template>
-    <div class="contact-main-container" id="contact-container">
+    <div class="home-main-container" id="contact-container">
         <CdgMainSVG/>
         <form v-on:submit.prevent="submitForm" class="contact-form">
             <div class="contact-form-row spaced">Name: <input v-model="name"/></div>

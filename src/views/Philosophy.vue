@@ -1,5 +1,5 @@
 <template>
-  <div class="philosophy-main-container" id="philosophy-container">
+  <div class="home-main-container" id="philosophy-container">
     <CdgMainSVG/>
     <div class="philosophy-main-text-container philosophy-left">
         <div class="philosophy-text-square"></div>
